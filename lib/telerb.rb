@@ -29,9 +29,20 @@ module TeleRb
     end
 
     def send_message(chat_id, text, reply_to_message_id = nil)
-      body = { chat_id: chat_id, text: text }
-      body[:reply_to_message_id] = reply_to_message_id if reply_to_message_id
-      response = CLIENT.post("#{@base_uri}#{@token}/sendMessage", body)
+      response = CLIENT.post("#{@base_uri}#{@token}/sendMessage",
+                             { chat_id: chat_id, text: text, reply_to_message_id: reply_to_message_id })
+      response.parsed_response
+    end
+
+    def send_photo(chat_id, photo_path, caption = nil, reply_to_message_id = nil)
+      response = CLIENT.post("#{@base_uri}#{@token}/sendPhoto",
+                             {
+                               chat_id: chat_id,
+                               reply_to_message_id: reply_to_message_id,
+                               photo: File.new(photo_path, "rb"),
+                               caption: caption
+                             },
+                             { "Content-Type" => "multipart/form-data" })
       response.parsed_response
     end
 
