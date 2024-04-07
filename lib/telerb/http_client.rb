@@ -8,7 +8,7 @@ class HttpClient
     self.class.get(url, query: options)
   end
 
-  def post(url, options)
-    self.class.post(url, body: options)
+  def post(url, options, headers = nil)
+    self.class.post(url, body: options, headers: headers)
   end
 end

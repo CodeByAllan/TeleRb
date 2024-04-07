@@ -28,6 +28,8 @@ bot.listen do |message|
   message_id = message['message_id']
   # Send a text message 
   bot.send_message(chat_id, 'Hello World', message_id)
+  # Send a Photo
+  bot.send_photo(chat_id, "./exemple.png", "test", message_id)
 end
 ```
 The ***message_id*** parameter is only necessary if you want the message to be sent as a reply.
