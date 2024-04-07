@@ -30,6 +30,12 @@ bot.listen do |message|
   bot.send_message(chat_id, 'Hello World', message_id)
   # Send a Photo
   bot.send_photo(chat_id, "./exemple.png", "test", message_id)
+  # Send Document
+  bot.send_document(chat_id, "./exemple.rar", "test", message_id)
+  # Send Audio
+  bot.send_audio(chat_id, "./exemple.mp3", "test", message_id)
+  # Send Video
+  bot.send_video(chat_id, "./exemple.mp4", "test", message_id)
 end
 ```
 The ***message_id*** parameter is only necessary if you want the message to be sent as a reply.

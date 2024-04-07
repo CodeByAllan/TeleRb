@@ -40,17 +40,38 @@ module TeleRb
     end
 
     def send_photo(chat_id, photo_path, caption = nil, reply_to_message_id = nil)
-      CLIENT.post("#{@base_uri}#{@token}/sendPhoto",
+      send_media(chat_id, photo_path, caption, reply_to_message_id, "sendPhoto", :photo)
+    end
+
+    def send_audio(chat_id, audio_path, caption = nil, reply_to_message_id = nil)
+      send_media(chat_id, audio_path, caption, reply_to_message_id, "sendAudio", :audio)
+    end
+
+    def send_video(chat_id, video_path, caption = nil, reply_to_message_id = nil)
+      send_media(chat_id, video_path, caption, reply_to_message_id, "sendVideo", :video)
+    end
+
+    def send_document(chat_id, document_path, caption = nil, reply_to_message_id = nil)
+      send_media(chat_id, document_path, caption, reply_to_message_id, "sendDocument", :document)
+    end
+
+    private
+
+    def send_media(chat_id, media_path, caption = nil, reply_to_message_id = nil, method, filekey)
+      raise ArgumentError, "Invalid media type: {#{filekey.capitalize}" unless %i[photo audio video
+                                                                                  document].include?(filekey)
+
+      CLIENT.post("#{@base_uri}#{@token}/#{method}",
                   {
                     chat_id: chat_id,
                     reply_to_message_id: reply_to_message_id,
-                    photo: File.new(photo_path, "rb"),
+                    filekey.to_sym => File.new(media_path, "rb"),
                     caption: caption
                   },
                   { "Content-Type" => "multipart/form-data" })
-      "Photo sent successfully!"
+      "#{filekey.capitalize} Sent with success!"
     rescue StandardError => e
-      puts "Error sending photo: #{e.message}"
+      puts "Error when sending #{filekey.capitalize}: #{e.message}"
       nil
     end
 
