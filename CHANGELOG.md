@@ -15,3 +15,7 @@
 - Add error handling to methods
 - Implements The Audio, Video, Document sending method
 - Improvement in media delivery Service
+
+## [0.1.3] - 2024-04-08 
+
+- Implement the methods to define the commands and obtain the defined commands
