@@ -4,7 +4,7 @@ require "httparty"
 # Class responsability for  http services
 class HttpClient
   include HTTParty
-  def get(url, options)
+  def get(url, options = nil)
     self.class.get(url, query: options)
   end
 

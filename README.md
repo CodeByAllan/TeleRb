@@ -14,8 +14,10 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
+### Initialize Bot
 
 ```
+
 require 'telerb'
 
 # Create a bot instance
@@ -28,6 +30,14 @@ bot.listen do |message|
   message_id = message['message_id']
   # Send a text message 
   bot.send_message(chat_id, 'Hello World', message_id)
+end
+
+```
+The ***message_id*** parameter is only necessary if you want the message to be sent as a reply.
+
+### Send Medias
+```
+
   # Send a Photo
   bot.send_photo(chat_id, "./exemple.png", "test", message_id)
   # Send Document
@@ -36,9 +46,23 @@ bot.listen do |message|
   bot.send_audio(chat_id, "./exemple.mp3", "test", message_id)
   # Send Video
   bot.send_video(chat_id, "./exemple.mp4", "test", message_id)
-end
+
 ```
-The ***message_id*** parameter is only necessary if you want the message to be sent as a reply.
+### Commands
+```
+
+COMMANDS = [
+  { command: "/start", description: "Start bot" },
+  { command: "/help", description: "Show command list" }
+].freeze
+
+# Method that records bot commands
+bot.set_commands(COMMANDS)
+
+# Method that returns the available commands
+bot.get_commands
+
+```
 
 ## Development
 

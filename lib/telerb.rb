@@ -55,6 +55,23 @@ module TeleRb
       send_media(chat_id, document_path, caption, reply_to_message_id, "sendDocument", :document)
     end
 
+    def get_commands
+      response = CLIENT.get("#{@base_uri}#{@token}/getMyCommands")
+      response.parsed_response["result"]
+    rescue StandardError => e
+      puts "Error getting list of defined commands: #{e.message}"
+      nil
+    end
+
+    def set_commands(commands)
+      CLIENT.post("#{@base_uri}#{@token}/setMyCommands", { commands: commands }.to_json,
+                  { "Content-Type" => "application/json" })
+      "Commands set successfully"
+    rescue StandardError => e
+      puts "Error defining command list: #{e.message}"
+      nil
+    end
+
     private
 
     def send_media(chat_id, media_path, caption = nil, reply_to_message_id = nil, method, filekey)
