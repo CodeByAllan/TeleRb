@@ -72,6 +72,15 @@ module TeleRb
       nil
     end
 
+    def forward_message(from_chat_id, to_chat_id, message_id)
+      CLIENT.post("#{@base_uri}#{@token}/forwardMessage",
+                  { chat_id: to_chat_id, from_chat_id: from_chat_id, message_id: message_id })
+      "Forwarding was then done successfully!"
+    rescue StandardError => e
+      puts "Error forwarding message: #{e.message}"
+      nil
+    end
+
     private
 
     def send_media(chat_id, media_path, caption = nil, reply_to_message_id = nil, method, filekey)
