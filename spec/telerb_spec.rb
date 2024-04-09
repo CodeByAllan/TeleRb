@@ -80,4 +80,13 @@ RSpec.describe TeleRb::TelegramBot do
       expect(bot.send_document(chat_id, document_path, caption)).to eq("Document Sent with success!")
     end
   end
+
+  describe "#forward_message" do
+    it "Forwarding message" do
+      from_chat_id = 123
+      to_chat_id = 456
+      message_id = 1
+      expect(bot.forward_message(from_chat_id, to_chat_id, message_id)).to eq("Forwarding was then done successfully!")
+    end
+  end
 end
