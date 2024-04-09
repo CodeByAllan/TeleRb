@@ -19,3 +19,7 @@
 ## [0.1.3] - 2024-04-08 
 
 - Implement the methods to define the commands and obtain the defined commands
+
+## [0.1.4] - 2024-04-09 
+
+- Implements the forwardMessage method
