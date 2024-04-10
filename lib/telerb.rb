@@ -81,6 +81,10 @@ module TeleRb
       nil
     end
 
+    def user_info(message)
+      message["from"]
+    end
+
     private
 
     def send_media(chat_id, media_path, caption = nil, reply_to_message_id = nil, method, filekey)
