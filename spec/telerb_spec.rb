@@ -8,22 +8,10 @@ RSpec.describe TeleRb::TelegramBot do
   before(:each) do
     bot.config("123456789")
   end
-
-  describe "#config" do
-    it "Configure the token" do
+  describe "settings" do
+    it "configure the token" do
       expect(bot.instance_variable_get(:@token)).to eq("123456789")
     end
-  end
-
-  describe "#send_message" do
-    it "send a message" do
-      chat_id = "123"
-      message = "Hello World!"
-      expect(bot.send_message(chat_id, message)).to eq("Message sent successfully!")
-    end
-  end
-
-  describe "#set_commands" do
     it "define the available commands" do
       commands = [
         { command: "/start", description: "Start bot" },
@@ -31,14 +19,20 @@ RSpec.describe TeleRb::TelegramBot do
       ].freeze
       expect(bot.set_commands(commands)).to eq("Commands set successfully")
     end
-  end
 
-  describe "#get_commands" do
     it "get available commands" do
       expect(bot.get_commands).to eq(nil)
     end
   end
-  describe "#send_photo" do
+  describe "Text Message Sending" do
+    it "send a text message" do
+      chat_id = "123"
+      message = "Hello World!"
+      expect(bot.send_message(chat_id, message)).to eq("Message sent successfully!")
+    end
+  end
+
+  describe "Photo Message Sending" do
     it "send a photo" do
       chat_id = "123"
       photo_path = "./spec/fixtures/exemple.jpg"
@@ -48,7 +42,7 @@ RSpec.describe TeleRb::TelegramBot do
       expect(bot.send_photo(chat_id, photo_path, caption)).to eq("Photo Sent with success!")
     end
   end
-  describe "#send_audio" do
+  describe "Audio Message Sending" do
     it "send an audio file" do
       chat_id = "123"
       audio_path = "./spec/fixtures/exemple.mp3"
@@ -59,7 +53,7 @@ RSpec.describe TeleRb::TelegramBot do
     end
   end
 
-  describe "#send_video" do
+  describe "Video Message Sending" do
     it "send a video" do
       chat_id = "123"
       video_path = "./spec/fixtures/exemple.mp4"
@@ -70,7 +64,7 @@ RSpec.describe TeleRb::TelegramBot do
     end
   end
 
-  describe "#send_document" do
+  describe "Document Message Sending" do
     it "send a document" do
       chat_id = "123"
       document_path = "./spec/fixtures/exemple.rar"
@@ -81,15 +75,15 @@ RSpec.describe TeleRb::TelegramBot do
     end
   end
 
-  describe "#forward_message" do
-    it "Forwarding message" do
+  describe "Forwarding Message" do
+    it "Send a Forwarded Message" do
       from_chat_id = 123
       to_chat_id = 456
       message_id = 1
       expect(bot.forward_message(from_chat_id, to_chat_id, message_id)).to eq("Forwarding was then done successfully!")
     end
   end
-  describe "#user_info" do
+  describe "Get User Info" do
     let(:message) do
       {
         "message_id" => 1,
