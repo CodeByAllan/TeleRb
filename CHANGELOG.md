@@ -23,3 +23,7 @@
 ## [0.1.4] - 2024-04-09 
 
 - Implements the forwardMessage method
+
+## [0.1.5] - 2024-04-10
+
+- Implement the method to obtain information from a user
