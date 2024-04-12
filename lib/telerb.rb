@@ -85,6 +85,16 @@ module TeleRb
       message["from"]
     end
 
+    def send_location(chat_id, latitude, longitude, reply_to_message_id = nil)
+      CLIENT.post("#{@base_uri}#{@token}/sendLocation",
+                  { chat_id: chat_id, latitude: latitude, longitude: longitude,
+                    reply_to_message_id: reply_to_message_id })
+      "Location Sent with success!"
+    rescue StandardError => e
+      puts "Error when sending Location: #{e.message}"
+      nil
+    end
+
     private
 
     def send_media(chat_id, media_path, caption = nil, reply_to_message_id = nil, method, filekey)
