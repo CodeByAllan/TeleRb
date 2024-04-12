@@ -27,3 +27,7 @@
 ## [0.1.5] - 2024-04-10
 
 - Implement the method to obtain information from a user
+
+## [0.1.6] - 2024-04-12
+
+- Implements The Location sending method
