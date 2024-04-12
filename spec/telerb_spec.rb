@@ -75,6 +75,15 @@ RSpec.describe TeleRb::TelegramBot do
     end
   end
 
+  describe "Location Message Sending" do
+    it "send a location" do
+      chat_id = "123"
+      latitude = 12.345
+      longitude = 12.345
+      expect(bot.send_location(chat_id, latitude, longitude)).to eq("Location Sent with success!")
+    end
+  end
+
   describe "Forwarding Message" do
     it "Send a Forwarded Message" do
       from_chat_id = 123
