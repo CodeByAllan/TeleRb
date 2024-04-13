@@ -55,6 +55,10 @@ module TeleRb
       send_media(chat_id, document_path, caption, reply_to_message_id, "sendDocument", :document)
     end
 
+    def send_sticker(chat_id, sticker_path, reply_to_message_id = nil)
+      send_media(chat_id, sticker_path, reply_to_message_id, "sendSticker", :sticker)
+    end
+
     def get_commands
       response = CLIENT.get("#{@base_uri}#{@token}/getMyCommands")
       response.parsed_response["result"]
@@ -98,7 +102,7 @@ module TeleRb
     private
 
     def send_media(chat_id, media_path, caption = nil, reply_to_message_id = nil, method, filekey)
-      raise ArgumentError, "Invalid media type: {#{filekey.capitalize}" unless %i[photo audio video
+      raise ArgumentError, "Invalid media type: {#{filekey.capitalize}" unless %i[photo audio video sticker
                                                                                   document].include?(filekey)
 
       CLIENT.post("#{@base_uri}#{@token}/#{method}",
