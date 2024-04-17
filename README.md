@@ -21,8 +21,8 @@ If bundler is not being used to manage dependencies, install the gem by executin
 require 'telerb'
 
 # Create a bot instance
-bot = TeleRb::TelegramBot.new
-bot.config('YOUR_TOKEN')
+config = TelegramConfig.new("YOUR_TOKEN")
+bot = TeleRb::TelegramBot.new(config)
 
 # Initialize bot
 bot.listen do |message|
