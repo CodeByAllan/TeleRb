@@ -31,3 +31,9 @@
 ## [0.1.6] - 2024-04-12
 
 - Implements The Location sending method
+
+## [0.1.7] - 2024-04-17
+
+- Implement Sticker sending method
+- Refactor following best practices
+- Refactor test and implement test execution for parallel execution

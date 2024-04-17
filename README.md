@@ -21,8 +21,8 @@ If bundler is not being used to manage dependencies, install the gem by executin
 require 'telerb'
 
 # Create a bot instance
-bot = TeleRb::TelegramBot.new
-bot.config('YOUR_TOKEN')
+config = TelegramConfig.new("YOUR_TOKEN")
+bot = TeleRb::TelegramBot.new(config)
 
 # Initialize bot
 bot.listen do |message|
@@ -46,6 +46,8 @@ The ***message_id*** parameter is only necessary if you want the message to be s
   bot.send_audio(chat_id, "./exemple.mp3", "test", message_id)
   # Send Video
   bot.send_video(chat_id, "./exemple.mp4", "test", message_id)
+  # Send Sticker
+  bot.send_sticker(chat_id, "./exemple.webp", message_id)
 
 ```
 ### Commands
