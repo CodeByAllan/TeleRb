@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "./lib/telerb/http_client"
+require "./lib/telerb/utils/http_client"
 
 RSpec.describe HttpClient do
   let(:client) { HttpClient.new }
